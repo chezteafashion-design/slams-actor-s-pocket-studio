@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { profileQuery, settingsQuery } from "@/features/account/queries";
 import { OfficeDesk } from "@/features/office/OfficeDesk";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_authenticated/")({
   head: () => ({
     meta: [
       { title: "The Office — SLAMS, The Actor's Pocket Studio" },
@@ -12,9 +13,15 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: Index,
+  loader: ({ context }) =>
+    Promise.all([
+      context.queryClient.ensureQueryData(profileQuery(context.user.id)),
+      context.queryClient.ensureQueryData(settingsQuery(context.user.id)),
+    ]),
+  component: OfficePage,
 });
 
-function Index() {
-  return <OfficeDesk />;
+function OfficePage() {
+  const { user } = Route.useRouteContext();
+  return <OfficeDesk userId={user.id} />;
 }

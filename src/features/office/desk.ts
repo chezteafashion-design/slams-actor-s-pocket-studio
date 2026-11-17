@@ -1,5 +1,7 @@
 /** The Office desk: which illustrated object opens which part of the studio, and its honest status. */
+import type { LanguageIntensity } from "@/domain/account";
 import {
+  NAV_DESTINATIONS,
   getPage,
   getPhase,
   signaturesForPage,
@@ -122,18 +124,35 @@ export function signaturesOf(dest: DeskDestination): SignatureExperience[] {
   return [...seen.values()];
 }
 
-/** The coach's lines. Curated, cycled in order — not generated. */
-export const COACH_LINES = [
-  "You're planning the scene instead of doing it.",
-  "Stop showing me. Do something to them.",
-  "Listen. Then answer. In that order.",
-  "Feelings are a by-product. Play the action.",
-  "One clear choice beats five clever ones.",
-  "Take the note. Then actually do the note.",
-  "Nobody cares how hard you're working. Show me what changed.",
-] as const;
+/** Desk objects that open one of the four principal actions go straight to that tab; the rest open a sheet. */
+export const PRINCIPAL_DESTINATIONS: Partial<Record<DeskDestinationId, NavDestinationId>> = {
+  train: "schools",
+  rehearse: "rehearse",
+  work: "work",
+  stuck: "stuck",
+};
 
-export function nextCoachLine(index: number): { line: string; next: number } {
-  const i = ((index % COACH_LINES.length) + COACH_LINES.length) % COACH_LINES.length;
-  return { line: COACH_LINES[i] ?? COACH_LINES[0], next: (i + 1) % COACH_LINES.length };
+export function tabPath(tab: NavDestinationId) {
+  const d = NAV_DESTINATIONS.find((n) => n.id === tab);
+  if (!d) throw new Error(`Unknown tab ${tab}`);
+  return d.path;
+}
+
+/** The coach's lines, each with a softened version. Curated, cycled in order — not generated. */
+export const COACH_LINES: ReadonlyArray<Record<LanguageIntensity, string>> = [
+  { full: "You're planning the scene instead of doing it.", softened: "You're planning the scene instead of doing it." },
+  { full: "Stop showing me. Do something to them.", softened: "Stop showing me. Do something to them." },
+  { full: "Listen. Then answer. In that order.", softened: "Listen. Then answer. In that order." },
+  { full: "Feelings are a by-product. Play the damn action.", softened: "Feelings are a by-product. Play the action." },
+  { full: "One clear choice beats five clever ones.", softened: "One clear choice beats five clever ones." },
+  { full: "Take the note. Then do the damn note.", softened: "Take the note. Then actually do the note." },
+  { full: "That was bullsh*t and you know it. Again.", softened: "That wasn't true and you know it. Again." },
+  { full: "Nobody gives a damn how hard you're working. Show me what changed.", softened: "Nobody cares how hard you're working. Show me what changed." },
+];
+
+export function nextCoachLine(index: number, intensity: LanguageIntensity = "full"): { line: string; next: number } {
+  const n = COACH_LINES.length;
+  const i = ((index % n) + n) % n;
+  const entry = COACH_LINES[i] ?? COACH_LINES[0]!;
+  return { line: entry[intensity], next: (i + 1) % n };
 }

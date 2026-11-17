@@ -200,3 +200,13 @@
 @media (prefers-reduced-motion: reduce) {
   .desk-hotspot[data-hint="true"], .animate-bubble-in { animation: none; }
 }
+
+/* Saved "Reduce motion" setting mirrors the OS preference. */
+[data-reduced-motion="true"] *,
+[data-reduced-motion="true"] *::before,
+[data-reduced-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

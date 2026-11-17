@@ -1,21 +1,21 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { UserRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import deskImage from "@/assets/office-desk.jpg";
 import logoImage from "@/assets/slams-logo.png";
 import { BottomNav } from "@/components/slams/BottomNav";
 import { Button } from "@/components/ui/button";
-import { PRODUCT, type NavDestinationId } from "@/domain/constitution";
+import { PRODUCT } from "@/domain/constitution";
+import { profileQuery, settingsQuery } from "@/features/account/queries";
 import { DestinationSheet } from "./DestinationSheet";
 import { StudioStatusSheet } from "./StudioStatusSheet";
-import { DESK_DESTINATIONS, DESK_HOTSPOTS, nextCoachLine, type DeskDestinationId } from "./desk";
+import { DESK_DESTINATIONS, DESK_HOTSPOTS, PRINCIPAL_DESTINATIONS, nextCoachLine, tabPath, type DeskDestinationId } from "./desk";
 
-const TAB_TO_DESTINATION: Record<Exclude<NavDestinationId, "office">, DeskDestinationId> = {
-  schools: "train",
-  rehearse: "rehearse",
-  work: "work",
-  stuck: "stuck",
-};
-
-export function OfficeDesk() {
+export function OfficeDesk({ userId }: { userId: string }) {
+  const { data: profile } = useSuspenseQuery(profileQuery(userId));
+  const { data: settings } = useSuspenseQuery(settingsQuery(userId));
+  const navigate = useNavigate();
   const [openId, setOpenId] = useState<DeskDestinationId | null>(null);
   const [statusOpen, setStatusOpen] = useState(false);
   const [coach, setCoach] = useState<{ line: string; next: number } | null>(null);
@@ -26,10 +26,12 @@ export function OfficeDesk() {
     return () => clearTimeout(t);
   }, [coach]);
 
-  const onTab = (id: NavDestinationId) => {
-    if (id === "office") window.scrollTo({ top: 0, behavior: "smooth" });
-    else setOpenId(TAB_TO_DESTINATION[id]);
+  const openDesk = (id: DeskDestinationId) => {
+    const tab = PRINCIPAL_DESTINATIONS[id];
+    if (tab) navigate({ to: tabPath(tab) });
+    else setOpenId(id);
   };
+  const firstName = profile.display_name.split(/\s+/)[0] ?? "";
 
   return (
     <div className="min-h-dvh pb-20">
@@ -54,6 +56,13 @@ export function OfficeDesk() {
             <p className="font-display text-[3.6cqw] leading-none text-foreground/90">{PRODUCT.credit}</p>
             <img src={logoImage} alt={`${PRODUCT.name} — ${PRODUCT.tagline}`} width={640} height={323} className="mt-[1cqw] w-[46%]" />
           </div>
+          <Link
+            to="/account"
+            aria-label="Your account"
+            className="absolute right-[3%] top-[1.6%] grid size-[10cqw] max-h-11 max-w-11 place-items-center rounded-full border border-brass/50 bg-background/70 text-brass backdrop-blur hover:bg-brass/15"
+          >
+            <UserRound className="size-[55%]" aria-hidden />
+          </Link>
 
           {/* Desk objects */}
           {DESK_HOTSPOTS.map((h) => (
@@ -62,7 +71,7 @@ export function OfficeDesk() {
               type="button"
               data-hint="true"
               aria-label={`${h.label}: see what's inside`}
-              onClick={() => setOpenId(h.destination)}
+              onClick={() => openDesk(h.destination)}
               className="desk-hotspot absolute"
               style={{ left: `${h.rect.left}%`, top: `${h.rect.top}%`, width: `${h.rect.width}%`, height: `${h.rect.height}%` }}
             />
@@ -72,7 +81,7 @@ export function OfficeDesk() {
           <button
             type="button"
             aria-label="Ask the coach for a note"
-            onClick={() => setCoach(nextCoachLine(coach?.next ?? 0))}
+            onClick={() => setCoach(nextCoachLine(coach?.next ?? 0, settings.language_intensity))}
             className="desk-hotspot absolute left-[27%] top-[19%] h-[45%] w-[39%]"
           />
           <div aria-live="polite" className="pointer-events-none absolute left-[3%] top-[24%] w-[46%]">
@@ -86,7 +95,9 @@ export function OfficeDesk() {
 
           {/* Clipboard: real training state only */}
           <div className="absolute left-[10.5%] top-[69.5%] flex h-[20.5%] w-[57%] flex-col items-start justify-center gap-[1.8cqw] text-paper-foreground">
-            <span className="rounded-sm bg-primary px-[2cqw] py-[0.6cqw] font-label text-[3cqw] text-primary-foreground">Current training</span>
+            <span className="rounded-sm bg-primary px-[2cqw] py-[0.6cqw] font-label text-[3cqw] text-primary-foreground">
+              {firstName ? `${firstName}'s training` : "Current training"}
+            </span>
             <p className="font-display text-[6cqw] leading-none">Nothing started yet.</p>
             <p className="text-[3.4cqw] italic leading-snug text-paper-muted">Your record begins the day you do the work.</p>
             <Button variant="desk" size="sm" onClick={() => setOpenId("baseline")} className="h-auto px-[3cqw] py-[1.6cqw] text-[3.3cqw]">
@@ -106,7 +117,7 @@ export function OfficeDesk() {
         </section>
       </main>
 
-      <BottomNav active="office" onSelect={onTab} />
+      <BottomNav active="office" />
       <DestinationSheet destination={openId ? DESK_DESTINATIONS[openId] : null} onClose={() => setOpenId(null)} />
       <StudioStatusSheet open={statusOpen} onOpenChange={setStatusOpen} />
     </div>
