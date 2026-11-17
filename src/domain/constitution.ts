@@ -287,7 +287,7 @@ type PageInput = Omit<PageContract, "number" | "systems" | "engines" | "status" 
 
 const pages: PageInput[] = [
   // ---------------- HOME
-  { id: "office", name: "The Office", family: "home", path: "/", tab: "office", mockup: "01",
+  { id: "office", name: "The Office", family: "home", path: "/", tab: "office", mockup: "01", status: "in-development",
     purpose: "Central hub: current training, the four principal actions, supporting-system shortcuts and the next real step.",
     actions: ["Resume current lesson", "Train", "Rehearse", "Work", "Get unstuck", "Open a supporting system"],
     data: ["enrollments", "lesson_progress", "director_notes", "notifications"],
@@ -491,16 +491,22 @@ export function signaturesForPage(pageId: string): SignatureExperience[] {
 
 /* ------------------------------------------------------------- Roadmap */
 
-export const ROADMAP_PHASES = [
-  { phase: 0, name: "Constitution", goal: "Architecture, registry, coverage matrix, plan. No product features." },
-  { phase: 1, name: "Foundation", goal: "Design system, app shell and five-tab navigation, Lovable Cloud, auth, profiles, settings, privacy, feature-status framework." },
-  { phase: 2, name: "Conservatory vertical slice", goal: "Curriculum-as-code model, all eight school shells, one complete term end to end through assessment and advancement." },
-  { phase: 3, name: "Baseline & Development Engine", goal: "Actor's Baseline, results and pathway, Passport, evidence and rule-earned milestones." },
-  { phase: 4, name: "Performance Lab & media", goal: "Recording, private storage, takes, Take Review, Three Takes Three Tactics, Do the Damn Note, Bullsh*t Detector." },
-  { phase: 5, name: "Living Scene Engine", goal: "Scene model, Live Session, Unpredictable Director, Unpredictable Partner, Listening Trap, Rehearsal Lounge." },
-  { phase: 6, name: "Stuck Desk", goal: "Problem library, diagnosis rules, interventions, 60-Second Rescue, No Tears Required, retake results." },
-  { phase: 7, name: "Actor at Work", goal: "Auditions, character lab, breakdowns, scripts, self-tape with Set From Hell, projects, journals, portfolio." },
-  { phase: 8, name: "Director's Chair & notifications", goal: "Coach and labelled-AI feedback, review requests, notifications." },
-  { phase: 9, name: "Curriculum completion", goal: "Full authored content for all eight schools, reviewed by a qualified practitioner." },
-  { phase: 10, name: "Release hardening", goal: "Accessibility audit, performance, offline tolerance, PWA, native packaging readiness." },
-] as const;
+export type PhaseStatus = "complete" | "in-progress" | "planned";
+
+export const ROADMAP_PHASES: ReadonlyArray<{ phase: number; name: string; status: PhaseStatus; goal: string }> = [
+  { phase: 0, name: "Constitution", status: "complete", goal: "Architecture, registry, coverage matrix, plan. No product features." },
+  { phase: 1, name: "Foundation", status: "in-progress", goal: "Design system, app shell and five-tab navigation, Lovable Cloud, auth, profiles, settings, privacy, feature-status framework." },
+  { phase: 2, name: "Conservatory vertical slice", status: "planned", goal: "Curriculum-as-code model, all eight school shells, one complete term end to end through assessment and advancement." },
+  { phase: 3, name: "Baseline & Development Engine", status: "planned", goal: "Actor's Baseline, results and pathway, Passport, evidence and rule-earned milestones." },
+  { phase: 4, name: "Performance Lab & media", status: "planned", goal: "Recording, private storage, takes, Take Review, Three Takes Three Tactics, Do the Damn Note, Bullsh*t Detector." },
+  { phase: 5, name: "Living Scene Engine", status: "planned", goal: "Scene model, Live Session, Unpredictable Director, Unpredictable Partner, Listening Trap, Rehearsal Lounge." },
+  { phase: 6, name: "Stuck Desk", status: "planned", goal: "Problem library, diagnosis rules, interventions, 60-Second Rescue, No Tears Required, retake results." },
+  { phase: 7, name: "Actor at Work", status: "planned", goal: "Auditions, character lab, breakdowns, scripts, self-tape with Set From Hell, projects, journals, portfolio." },
+  { phase: 8, name: "Director's Chair & notifications", status: "planned", goal: "Coach and labelled-AI feedback, review requests, notifications." },
+  { phase: 9, name: "Curriculum completion", status: "planned", goal: "Full authored content for all eight schools, reviewed by a qualified practitioner." },
+  { phase: 10, name: "Release hardening", status: "planned", goal: "Accessibility audit, performance, offline tolerance, PWA, native packaging readiness." },
+];
+
+export function getPhase(phase: number) {
+  return ROADMAP_PHASES.find((r) => r.phase === phase);
+}

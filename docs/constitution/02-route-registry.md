@@ -20,7 +20,7 @@ Development and Account pages are reached from the Office (systems row, Passport
 
 | # | Page | Path | Family | Tab | Access | Phase | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | The Office | `/` | Home | OFFICE | Member | 1 | Planned |
+| 1 | The Office | `/` | Home | OFFICE | Member | 1 | In development |
 | 2 | Welcome | `/welcome` | Home | OFFICE | Public | 1 | Planned |
 | 3 | Notifications | `/notifications` | Home | OFFICE | Member | 8 | Planned |
 | 4 | The Conservatory | `/schools` | Training | SCHOOLS | Public | 2 | Planned |

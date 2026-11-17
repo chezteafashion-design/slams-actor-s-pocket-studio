@@ -74,8 +74,8 @@ describe("SLAMS constitution", () => {
     }
   });
 
-  it("reports every feature honestly as not yet live during the constitution phase", () => {
-    for (const p of PAGES) expect(p.status).toBe("planned");
+  it("reports no feature as live or beta before it is actually built", () => {
+    for (const p of PAGES) expect(["planned", "in-development"]).toContain(p.status);
     for (const s of SIGNATURE_EXPERIENCES) expect(s.status).toBe("planned");
   });
 

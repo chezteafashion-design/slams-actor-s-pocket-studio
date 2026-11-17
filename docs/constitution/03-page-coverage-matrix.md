@@ -18,7 +18,7 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 
 ### 1. The Office (mockup 01)
 
-- **Path:** `/` · **Tab:** OFFICE · **Access:** member · **Phase:** 1 · **Status:** Planned
+- **Path:** `/` · **Tab:** OFFICE · **Access:** member · **Phase:** 1 · **Status:** In development
 - **Purpose:** Central hub: current training, the four principal actions, supporting-system shortcuts and the next real step.
 - **Actions:** Resume current lesson; Train; Rehearse; Work; Get unstuck; Open a supporting system
 - **Data:** `enrollments`, `lesson_progress`, `director_notes`, `notifications`
