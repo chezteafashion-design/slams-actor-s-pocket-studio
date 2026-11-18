@@ -16,7 +16,11 @@ One phase per build prompt (or a few prompts for large phases). A phase is done 
 | 9 | Curriculum completion | Remaining terms and years for all eight schools, practitioner review, content moves from beta to live | content |
 | 10 | Release hardening | Accessibility audit, performance budgets, offline tolerance for sessions, PWA, Capacitor packaging readiness, store-rating review | all |
 
-## Next prompt (Phase 1) scope
+## Phase 1 status
+
+Built: account tables with per-user access rules, email sign-in/sign-up, password reset, Welcome, Profile, Settings, Privacy & Data (export and delete), About & Feature Status, the five tabs. Pages are `beta` until sign-up is verified with a real account. Google sign-in waits on the backend provider being switched on. Profile photo moves to the Portfolio (Phase 7).
+
+## Phase 1 original scope
 
 1. Enable Lovable Cloud; auth with email and Google; `profiles`, `user_roles`, `user_settings` with RLS.
 2. Design system: tokens, fonts, SLAMS components (`AppShell`, `TopBar`, `BottomNav`, `ActionTile`, `SystemShortcut`, `PaperCard`, `BrassFrame`, `StatusBadge`, `HonestEmpty`).

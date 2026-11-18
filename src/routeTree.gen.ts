@@ -10,11 +10,41 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedRehearseRouteImport } from './routes/_authenticated/rehearse'
 import { Route as AuthenticatedSchoolsRouteImport } from './routes/_authenticated/schools'
+import { Route as AuthenticatedStuckRouteImport } from './routes/_authenticated/stuck'
+import { Route as AuthenticatedWorkRouteImport } from './routes/_authenticated/work'
+import { Route as AuthenticatedAccountIndexRouteImport } from './routes/_authenticated/account.index'
+import { Route as AuthenticatedAccountPrivacyRouteImport } from './routes/_authenticated/account.privacy'
+import { Route as AuthenticatedAccountSettingsRouteImport } from './routes/_authenticated/account.settings'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WelcomeRoute = WelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
@@ -22,40 +52,141 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedRehearseRoute = AuthenticatedRehearseRouteImport.update({
+  id: '/rehearse',
+  path: '/rehearse',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSchoolsRoute = AuthenticatedSchoolsRouteImport.update({
   id: '/schools',
   path: '/schools',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedStuckRoute = AuthenticatedStuckRouteImport.update({
+  id: '/stuck',
+  path: '/stuck',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedWorkRoute = AuthenticatedWorkRouteImport.update({
+  id: '/work',
+  path: '/work',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAccountIndexRoute =
+  AuthenticatedAccountIndexRouteImport.update({
+    id: '/account/',
+    path: '/account/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAccountPrivacyRoute =
+  AuthenticatedAccountPrivacyRouteImport.update({
+    id: '/account/privacy',
+    path: '/account/privacy',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAccountSettingsRoute =
+  AuthenticatedAccountSettingsRouteImport.update({
+    id: '/account/settings',
+    path: '/account/settings',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/welcome': typeof WelcomeRoute
+  '/rehearse': typeof AuthenticatedRehearseRoute
   '/schools': typeof AuthenticatedSchoolsRoute
+  '/stuck': typeof AuthenticatedStuckRoute
+  '/work': typeof AuthenticatedWorkRoute
+  '/account/privacy': typeof AuthenticatedAccountPrivacyRoute
+  '/account/settings': typeof AuthenticatedAccountSettingsRoute
+  '/account/': typeof AuthenticatedAccountIndexRoute
 }
 export interface FileRoutesByTo {
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/welcome': typeof WelcomeRoute
+  '/rehearse': typeof AuthenticatedRehearseRoute
   '/schools': typeof AuthenticatedSchoolsRoute
+  '/stuck': typeof AuthenticatedStuckRoute
+  '/work': typeof AuthenticatedWorkRoute
   '/': typeof AuthenticatedIndexRoute
+  '/account/privacy': typeof AuthenticatedAccountPrivacyRoute
+  '/account/settings': typeof AuthenticatedAccountSettingsRoute
+  '/account': typeof AuthenticatedAccountIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/welcome': typeof WelcomeRoute
+  '/_authenticated/rehearse': typeof AuthenticatedRehearseRoute
   '/_authenticated/schools': typeof AuthenticatedSchoolsRoute
+  '/_authenticated/stuck': typeof AuthenticatedStuckRoute
+  '/_authenticated/work': typeof AuthenticatedWorkRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/account/privacy': typeof AuthenticatedAccountPrivacyRoute
+  '/_authenticated/account/settings': typeof AuthenticatedAccountSettingsRoute
+  '/_authenticated/account/': typeof AuthenticatedAccountIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/schools'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/reset-password'
+    | '/welcome'
+    | '/rehearse'
+    | '/schools'
+    | '/stuck'
+    | '/work'
+    | '/account/privacy'
+    | '/account/settings'
+    | '/account/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/schools' | '/'
+  to:
+    | '/about'
+    | '/auth'
+    | '/reset-password'
+    | '/welcome'
+    | '/rehearse'
+    | '/schools'
+    | '/stuck'
+    | '/work'
+    | '/'
+    | '/account/privacy'
+    | '/account/settings'
+    | '/account'
   id:
     | '__root__'
     | '/_authenticated'
+    | '/about'
+    | '/auth'
+    | '/reset-password'
+    | '/welcome'
+    | '/_authenticated/rehearse'
     | '/_authenticated/schools'
+    | '/_authenticated/stuck'
+    | '/_authenticated/work'
     | '/_authenticated/'
+    | '/_authenticated/account/privacy'
+    | '/_authenticated/account/settings'
+    | '/_authenticated/account/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  WelcomeRoute: typeof WelcomeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -67,11 +198,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/welcome': {
+      id: '/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof WelcomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/': {
       id: '/_authenticated/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/rehearse': {
+      id: '/_authenticated/rehearse'
+      path: '/rehearse'
+      fullPath: '/rehearse'
+      preLoaderRoute: typeof AuthenticatedRehearseRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/schools': {
@@ -81,17 +247,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSchoolsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/stuck': {
+      id: '/_authenticated/stuck'
+      path: '/stuck'
+      fullPath: '/stuck'
+      preLoaderRoute: typeof AuthenticatedStuckRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/work': {
+      id: '/_authenticated/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof AuthenticatedWorkRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/account/': {
+      id: '/_authenticated/account/'
+      path: '/account'
+      fullPath: '/account/'
+      preLoaderRoute: typeof AuthenticatedAccountIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/account/privacy': {
+      id: '/_authenticated/account/privacy'
+      path: '/account/privacy'
+      fullPath: '/account/privacy'
+      preLoaderRoute: typeof AuthenticatedAccountPrivacyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/account/settings': {
+      id: '/_authenticated/account/settings'
+      path: '/account/settings'
+      fullPath: '/account/settings'
+      preLoaderRoute: typeof AuthenticatedAccountSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedRehearseRoute: typeof AuthenticatedRehearseRoute
   AuthenticatedSchoolsRoute: typeof AuthenticatedSchoolsRoute
+  AuthenticatedStuckRoute: typeof AuthenticatedStuckRoute
+  AuthenticatedWorkRoute: typeof AuthenticatedWorkRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedAccountPrivacyRoute: typeof AuthenticatedAccountPrivacyRoute
+  AuthenticatedAccountSettingsRoute: typeof AuthenticatedAccountSettingsRoute
+  AuthenticatedAccountIndexRoute: typeof AuthenticatedAccountIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedRehearseRoute: AuthenticatedRehearseRoute,
   AuthenticatedSchoolsRoute: AuthenticatedSchoolsRoute,
+  AuthenticatedStuckRoute: AuthenticatedStuckRoute,
+  AuthenticatedWorkRoute: AuthenticatedWorkRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedAccountPrivacyRoute: AuthenticatedAccountPrivacyRoute,
+  AuthenticatedAccountSettingsRoute: AuthenticatedAccountSettingsRoute,
+  AuthenticatedAccountIndexRoute: AuthenticatedAccountIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -99,6 +312,10 @@ const AuthenticatedRouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  WelcomeRoute: WelcomeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

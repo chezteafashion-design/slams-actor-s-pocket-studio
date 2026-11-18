@@ -74,8 +74,14 @@ describe("SLAMS constitution", () => {
     }
   });
 
-  it("reports no feature as live or beta before it is actually built", () => {
-    for (const p of PAGES) expect(["planned", "in-development"]).toContain(p.status);
+  it("reports no feature as live, and only built Phase 1 pages as beta", () => {
+    for (const p of PAGES) {
+      expect(p.status).not.toBe("live");
+      if (p.phase > 1) expect(["planned", "in-development"]).toContain(p.status);
+    }
+    const phase1 = PAGES.filter((p) => p.phase === 1).map((p) => p.id).sort();
+    expect(phase1).toEqual(["about", "account", "auth", "office", "privacy", "reset-password", "settings", "welcome"]);
+    for (const id of phase1) expect(PAGES.find((p) => p.id === id)?.status).toBe("beta");
     for (const s of SIGNATURE_EXPERIENCES) expect(s.status).toBe("planned");
   });
 

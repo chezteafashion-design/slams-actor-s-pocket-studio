@@ -287,7 +287,7 @@ type PageInput = Omit<PageContract, "number" | "systems" | "engines" | "status" 
 
 const pages: PageInput[] = [
   // ---------------- HOME
-  { id: "office", name: "The Office", family: "home", path: "/", tab: "office", mockup: "01", status: "in-development",
+  { id: "office", name: "The Office", family: "home", path: "/", tab: "office", mockup: "01", status: "beta",
     purpose: "Central hub: current training, the four principal actions, supporting-system shortcuts and the next real step.",
     actions: ["Resume current lesson", "Train", "Rehearse", "Work", "Get unstuck", "Open a supporting system"],
     data: ["enrollments", "lesson_progress", "director_notes", "notifications"],
@@ -295,7 +295,7 @@ const pages: PageInput[] = [
     engines: ["actor-development"], access: "member", phase: 1 },
   { id: "welcome", name: "Welcome", family: "home", path: "/welcome", tab: "office",
     purpose: "First-run entry: 'mrahmostudios presents', the product promise, and sign in or create account.",
-    actions: ["Create account", "Sign in", "Read about SLAMS"], data: [], access: "public", phase: 1 },
+    actions: ["Create account", "Sign in", "Read about SLAMS"], data: [], access: "public", phase: 1, status: "beta" },
   { id: "notifications", name: "Notifications", family: "home", path: "/notifications", tab: "office",
     purpose: "Real events only: notes received, reviews completed, rehearsals the actor scheduled.",
     actions: ["Open related item", "Mark read", "Mark all read"], data: ["notifications"], access: "member", phase: 8 },
@@ -451,21 +451,21 @@ const pages: PageInput[] = [
 
   // ---------------- ACCOUNT
   { id: "auth", name: "Sign In / Create Account", family: "account", path: "/auth", tab: "office",
-    purpose: "Email and Google sign-in; account creation.", actions: ["Sign in", "Create account", "Continue with Google", "Forgot password"],
-    data: ["auth.users", "profiles"], access: "public", phase: 1 },
+    purpose: "Email sign-in and account creation. Google sign-in follows once it is switched on for the backend.", actions: ["Sign in", "Create account", "Forgot password"],
+    data: ["auth.users", "profiles"], access: "public", phase: 1, status: "beta" },
   { id: "reset-password", name: "Reset Password", family: "account", path: "/reset-password", tab: "office",
-    purpose: "Set a new password from the emailed link.", actions: ["Set new password"], data: ["auth.users"], access: "public", phase: 1 },
+    purpose: "Set a new password from the emailed link.", actions: ["Set new password"], data: ["auth.users"], access: "public", phase: 1, status: "beta" },
   { id: "account", name: "Profile", family: "account", path: "/account", tab: "office",
-    purpose: "Name, experience level, goals and photo.", actions: ["Edit profile", "Sign out"], data: ["profiles"], access: "member", phase: 1 },
+    purpose: "Name, experience level and goals. Photo arrives with the Portfolio.", actions: ["Edit profile", "Sign out"], data: ["profiles"], access: "member", phase: 1, status: "beta" },
   { id: "settings", name: "Settings", family: "account", path: "/account/settings", tab: "office",
-    purpose: "Notifications, recording defaults, language intensity, reduced motion and captions.",
-    actions: ["Toggle setting", "Save"], data: ["user_settings"], access: "member", phase: 1 },
+    purpose: "Coach language intensity, reduced motion, captions and recording defaults.",
+    actions: ["Toggle setting", "Save"], data: ["user_settings"], access: "member", phase: 1, status: "beta" },
   { id: "privacy", name: "Privacy & Data", family: "account", path: "/account/privacy", tab: "office",
     purpose: "Export data, delete recordings, manage sharing, delete account.",
-    actions: ["Export data", "Delete recordings", "Revoke share", "Delete account"], data: ["takes", "review_shares", "profiles"], access: "member", phase: 1 },
+    actions: ["Export data", "Delete recordings", "Revoke share", "Delete account"], data: ["takes", "review_shares", "profiles"], access: "member", phase: 1, status: "beta" },
   { id: "about", name: "About & Feature Status", family: "account", path: "/about", tab: "office",
     purpose: "mrahmostudios credit, live status of every feature, technique non-affiliation notice.",
-    actions: ["Read status", "Contact"], data: ["registry:features"], access: "public", phase: 1 },
+    actions: ["Read status", "Contact"], data: ["registry:features"], access: "public", phase: 1, status: "beta" },
 ];
 
 export const PAGES: PageContract[] = pages.map((p, i) => ({

@@ -20,8 +20,8 @@ Development and Account pages are reached from the Office (systems row, Passport
 
 | # | Page | Path | Family | Tab | Access | Phase | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | The Office | `/` | Home | OFFICE | Member | 1 | In development |
-| 2 | Welcome | `/welcome` | Home | OFFICE | Public | 1 | Planned |
+| 1 | The Office | `/` | Home | OFFICE | Member | 1 | Beta |
+| 2 | Welcome | `/welcome` | Home | OFFICE | Public | 1 | Beta |
 | 3 | Notifications | `/notifications` | Home | OFFICE | Member | 8 | Planned |
 | 4 | The Conservatory | `/schools` | Training | SCHOOLS | Public | 2 | Planned |
 | 5 | School Detail | `/schools/$schoolSlug` | Training | SCHOOLS | Public | 2 | Planned |
@@ -61,9 +61,9 @@ Development and Account pages are reached from the Office (systems row, Passport
 | 39 | Milestones | `/journey/milestones` | Development | OFFICE | Member | 3 | Planned |
 | 40 | Portfolio | `/journey/portfolio` | Development | OFFICE | Member | 7 | Planned |
 | 41 | The Director's Chair | `/directors-chair` | Development | OFFICE | Member | 8 | Planned |
-| 42 | Sign In / Create Account | `/auth` | Account | OFFICE | Public | 1 | Planned |
-| 43 | Reset Password | `/reset-password` | Account | OFFICE | Public | 1 | Planned |
-| 44 | Profile | `/account` | Account | OFFICE | Member | 1 | Planned |
-| 45 | Settings | `/account/settings` | Account | OFFICE | Member | 1 | Planned |
-| 46 | Privacy & Data | `/account/privacy` | Account | OFFICE | Member | 1 | Planned |
-| 47 | About & Feature Status | `/about` | Account | OFFICE | Public | 1 | Planned |
+| 42 | Sign In / Create Account | `/auth` | Account | OFFICE | Public | 1 | Beta |
+| 43 | Reset Password | `/reset-password` | Account | OFFICE | Public | 1 | Beta |
+| 44 | Profile | `/account` | Account | OFFICE | Member | 1 | Beta |
+| 45 | Settings | `/account/settings` | Account | OFFICE | Member | 1 | Beta |
+| 46 | Privacy & Data | `/account/privacy` | Account | OFFICE | Member | 1 | Beta |
+| 47 | About & Feature Status | `/about` | Account | OFFICE | Public | 1 | Beta |

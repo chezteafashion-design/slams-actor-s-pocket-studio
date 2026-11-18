@@ -38,3 +38,6 @@ use the editor.
 - Curriculum and other authored content will be typed content-as-code in `src/content/` referenced by permanent IDs; user data lives in Lovable Cloud. Why: reviewable content, stable user history.
 - The Office desk hotspots are % rectangles over the 941×1672 illustration in `src/features/office/desk.ts`; if the image changes, re-measure them. Why: positions are tied to that artwork.
 - The app is dark-only; tokens and SLAMS utilities (`surface-paper`, `surface-brass`, `font-label`, `font-display`) live in `src/styles.css`. Why: one theatre-office design system.
+- Member pages live under `src/routes/_authenticated/` (client-only gate; `/` sends signed-out visitors to `/welcome`, other pages to `/auth?redirect=`). Public pages are top-level. Why: the session is stored in the browser, so the server can't gate.
+- Signed-in server functions use `requireSupabaseAuth`; the bearer is attached by `attachSupabaseAuth` in `src/start.ts`. Account deletion is the only admin-client use and runs only for the caller. Why: RLS stays in force for everything else.
+- One `onAuthStateChange` listener lives in `src/routes/__root.tsx`; don't add per-page listeners (the reset-password page's recovery check is the exception). Why: avoids duplicate refreshes.

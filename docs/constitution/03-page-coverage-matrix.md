@@ -18,7 +18,7 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 
 ### 1. The Office (mockup 01)
 
-- **Path:** `/` · **Tab:** OFFICE · **Access:** member · **Phase:** 1 · **Status:** In development
+- **Path:** `/` · **Tab:** OFFICE · **Access:** member · **Phase:** 1 · **Status:** Beta
 - **Purpose:** Central hub: current training, the four principal actions, supporting-system shortcuts and the next real step.
 - **Actions:** Resume current lesson; Train; Rehearse; Work; Get unstuck; Open a supporting system
 - **Data:** `enrollments`, `lesson_progress`, `director_notes`, `notifications`
@@ -27,7 +27,7 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 
 ### 2. Welcome
 
-- **Path:** `/welcome` · **Tab:** OFFICE · **Access:** public · **Phase:** 1 · **Status:** Planned
+- **Path:** `/welcome` · **Tab:** OFFICE · **Access:** public · **Phase:** 1 · **Status:** Beta
 - **Purpose:** First-run entry: 'mrahmostudios presents', the product promise, and sign in or create account.
 - **Actions:** Create account; Sign in; Read about SLAMS
 - **Data:** none
@@ -399,16 +399,16 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 
 ### 42. Sign In / Create Account
 
-- **Path:** `/auth` · **Tab:** OFFICE · **Access:** public · **Phase:** 1 · **Status:** Planned
-- **Purpose:** Email and Google sign-in; account creation.
-- **Actions:** Sign in; Create account; Continue with Google; Forgot password
+- **Path:** `/auth` · **Tab:** OFFICE · **Access:** public · **Phase:** 1 · **Status:** Beta
+- **Purpose:** Email sign-in and account creation. Google sign-in follows once it is switched on for the backend.
+- **Actions:** Sign in; Create account; Forgot password
 - **Data:** `auth.users`, `profiles`
 - **Systems / engines:** —
 - **Signature experiences:** —
 
 ### 43. Reset Password
 
-- **Path:** `/reset-password` · **Tab:** OFFICE · **Access:** public · **Phase:** 1 · **Status:** Planned
+- **Path:** `/reset-password` · **Tab:** OFFICE · **Access:** public · **Phase:** 1 · **Status:** Beta
 - **Purpose:** Set a new password from the emailed link.
 - **Actions:** Set new password
 - **Data:** `auth.users`
@@ -417,8 +417,8 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 
 ### 44. Profile
 
-- **Path:** `/account` · **Tab:** OFFICE · **Access:** member · **Phase:** 1 · **Status:** Planned
-- **Purpose:** Name, experience level, goals and photo.
+- **Path:** `/account` · **Tab:** OFFICE · **Access:** member · **Phase:** 1 · **Status:** Beta
+- **Purpose:** Name, experience level and goals. Photo arrives with the Portfolio.
 - **Actions:** Edit profile; Sign out
 - **Data:** `profiles`
 - **Systems / engines:** —
@@ -426,8 +426,8 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 
 ### 45. Settings
 
-- **Path:** `/account/settings` · **Tab:** OFFICE · **Access:** member · **Phase:** 1 · **Status:** Planned
-- **Purpose:** Notifications, recording defaults, language intensity, reduced motion and captions.
+- **Path:** `/account/settings` · **Tab:** OFFICE · **Access:** member · **Phase:** 1 · **Status:** Beta
+- **Purpose:** Coach language intensity, reduced motion, captions and recording defaults.
 - **Actions:** Toggle setting; Save
 - **Data:** `user_settings`
 - **Systems / engines:** —
@@ -435,7 +435,7 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 
 ### 46. Privacy & Data
 
-- **Path:** `/account/privacy` · **Tab:** OFFICE · **Access:** member · **Phase:** 1 · **Status:** Planned
+- **Path:** `/account/privacy` · **Tab:** OFFICE · **Access:** member · **Phase:** 1 · **Status:** Beta
 - **Purpose:** Export data, delete recordings, manage sharing, delete account.
 - **Actions:** Export data; Delete recordings; Revoke share; Delete account
 - **Data:** `takes`, `review_shares`, `profiles`
@@ -444,7 +444,7 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 
 ### 47. About & Feature Status
 
-- **Path:** `/about` · **Tab:** OFFICE · **Access:** public · **Phase:** 1 · **Status:** Planned
+- **Path:** `/about` · **Tab:** OFFICE · **Access:** public · **Phase:** 1 · **Status:** Beta
 - **Purpose:** mrahmostudios credit, live status of every feature, technique non-affiliation notice.
 - **Actions:** Read status; Contact
 - **Data:** `registry:features`
