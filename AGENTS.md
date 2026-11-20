@@ -35,7 +35,8 @@ use the editor.
 - `docs/constitution/02-*.md` and `03-*.md` are generated: edit the registry, then run `bun scripts/generate-constitution-docs.ts`. A test fails when they drift. Why: the coverage matrix must match the code.
 - Update a page's `status` in the registry when it ships; UI shows availability only via registry helpers (e.g. `availabilityOf`). Why: honest status is a product rule.
 - Pure rules and engines live in `src/domain/` (no React, no I/O); feature UI in `src/features/<area>/`; SLAMS design-system components in `src/components/slams/`. Why: business logic stays testable and centralized.
-- Curriculum and other authored content will be typed content-as-code in `src/content/` referenced by permanent IDs; user data lives in Lovable Cloud. Why: reviewable content, stable user history.
+- Authored content uses permanent IDs; the connected external Supabase holds curriculum tables and user records. Keep the constitution registry authoritative for app navigation and availability. Why: schema sync must not imply unfinished features have shipped.
+- Account exports include every owner-scoped training table listed in `src/domain/account-export.ts`, using paginated reads through the caller's RLS client. Why: new saved records and histories must not be omitted or truncated.
 - The Office desk hotspots are % rectangles over the 941×1672 illustration in `src/features/office/desk.ts`; if the image changes, re-measure them. Why: positions are tied to that artwork.
 - The app is dark-only; tokens and SLAMS utilities (`surface-paper`, `surface-brass`, `font-label`, `font-display`) live in `src/styles.css`. Why: one theatre-office design system.
 - Member pages live under `src/routes/_authenticated/` (client-only gate; `/` sends signed-out visitors to `/welcome`, other pages to `/auth?redirect=`). Public pages are top-level. Why: the session is stored in the browser, so the server can't gate.

@@ -85,7 +85,7 @@ function PrivacyPage() {
     <AppShell title="Privacy & data" kicker="Account" tab="office" back={{ to: "/account", label: "Profile" }}>
       <div className="space-y-6">
         <PaperCard>
-          <CardHeading hint="Your profile, settings and role as one file.">Download your data</CardHeading>
+          <CardHeading hint="Your profile, settings, role and saved training records as one file.">Download your data</CardHeading>
           <Button variant="brass" onClick={onExport} disabled={exporting}>{exporting ? "Preparing…" : "Download my data"}</Button>
         </PaperCard>
 

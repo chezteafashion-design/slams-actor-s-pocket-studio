@@ -2,6 +2,8 @@
 
 Full plan: docs/constitution/08-development-roadmap.md
 
+- [x] Sync external Supabase tables: verified schema compatibility and added training records to account exports; authenticated end-to-end verification unavailable for externally managed Supabase.
+
 - [x] Phase 0: constitution docs, typed registry, sync tests
 - [x] Office on `/`: use the uploaded mascot, visual design and interactive desk (hotspots open honest status for each destination)
 - [x] Phase 1 build: backend tables, sign-in/up, reset password, Welcome, Profile, Settings, Privacy & Data (export, delete), About & Feature Status, 5 tab pages
