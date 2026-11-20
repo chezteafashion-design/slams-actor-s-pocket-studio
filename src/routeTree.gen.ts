@@ -13,12 +13,14 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SchoolsRouteImport } from './routes/schools'
 import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedRehearseRouteImport } from './routes/_authenticated/rehearse'
-import { Route as AuthenticatedSchoolsRouteImport } from './routes/_authenticated/schools'
 import { Route as AuthenticatedStuckRouteImport } from './routes/_authenticated/stuck'
 import { Route as AuthenticatedWorkRouteImport } from './routes/_authenticated/work'
+import { Route as SchoolsIndexRouteImport } from './routes/schools.index'
+import { Route as SchoolsSchoolSlugRouteImport } from './routes/schools.$schoolSlug'
 import { Route as AuthenticatedAccountIndexRouteImport } from './routes/_authenticated/account.index'
 import { Route as AuthenticatedAccountPrivacyRouteImport } from './routes/_authenticated/account.privacy'
 import { Route as AuthenticatedAccountSettingsRouteImport } from './routes/_authenticated/account.settings'
@@ -42,6 +44,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SchoolsRoute = SchoolsRouteImport.update({
+  id: '/schools',
+  path: '/schools',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WelcomeRoute = WelcomeRouteImport.update({
   id: '/welcome',
   path: '/welcome',
@@ -57,11 +64,6 @@ const AuthenticatedRehearseRoute = AuthenticatedRehearseRouteImport.update({
   path: '/rehearse',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedSchoolsRoute = AuthenticatedSchoolsRouteImport.update({
-  id: '/schools',
-  path: '/schools',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedStuckRoute = AuthenticatedStuckRouteImport.update({
   id: '/stuck',
   path: '/stuck',
@@ -71,6 +73,16 @@ const AuthenticatedWorkRoute = AuthenticatedWorkRouteImport.update({
   id: '/work',
   path: '/work',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const SchoolsIndexRoute = SchoolsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SchoolsRoute,
+} as any)
+const SchoolsSchoolSlugRoute = SchoolsSchoolSlugRouteImport.update({
+  id: '/$schoolSlug',
+  path: '/$schoolSlug',
+  getParentRoute: () => SchoolsRoute,
 } as any)
 const AuthenticatedAccountIndexRoute =
   AuthenticatedAccountIndexRouteImport.update({
@@ -96,11 +108,13 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/schools': typeof SchoolsRouteWithChildren
   '/welcome': typeof WelcomeRoute
   '/rehearse': typeof AuthenticatedRehearseRoute
-  '/schools': typeof AuthenticatedSchoolsRoute
   '/stuck': typeof AuthenticatedStuckRoute
   '/work': typeof AuthenticatedWorkRoute
+  '/schools/$schoolSlug': typeof SchoolsSchoolSlugRoute
+  '/schools/': typeof SchoolsIndexRoute
   '/account/privacy': typeof AuthenticatedAccountPrivacyRoute
   '/account/settings': typeof AuthenticatedAccountSettingsRoute
   '/account/': typeof AuthenticatedAccountIndexRoute
@@ -111,10 +125,11 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/welcome': typeof WelcomeRoute
   '/rehearse': typeof AuthenticatedRehearseRoute
-  '/schools': typeof AuthenticatedSchoolsRoute
   '/stuck': typeof AuthenticatedStuckRoute
   '/work': typeof AuthenticatedWorkRoute
+  '/schools/$schoolSlug': typeof SchoolsSchoolSlugRoute
   '/': typeof AuthenticatedIndexRoute
+  '/schools': typeof SchoolsIndexRoute
   '/account/privacy': typeof AuthenticatedAccountPrivacyRoute
   '/account/settings': typeof AuthenticatedAccountSettingsRoute
   '/account': typeof AuthenticatedAccountIndexRoute
@@ -125,12 +140,14 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/schools': typeof SchoolsRouteWithChildren
   '/welcome': typeof WelcomeRoute
   '/_authenticated/rehearse': typeof AuthenticatedRehearseRoute
-  '/_authenticated/schools': typeof AuthenticatedSchoolsRoute
   '/_authenticated/stuck': typeof AuthenticatedStuckRoute
   '/_authenticated/work': typeof AuthenticatedWorkRoute
+  '/schools/$schoolSlug': typeof SchoolsSchoolSlugRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/schools/': typeof SchoolsIndexRoute
   '/_authenticated/account/privacy': typeof AuthenticatedAccountPrivacyRoute
   '/_authenticated/account/settings': typeof AuthenticatedAccountSettingsRoute
   '/_authenticated/account/': typeof AuthenticatedAccountIndexRoute
@@ -142,11 +159,13 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/reset-password'
+    | '/schools'
     | '/welcome'
     | '/rehearse'
-    | '/schools'
     | '/stuck'
     | '/work'
+    | '/schools/$schoolSlug'
+    | '/schools/'
     | '/account/privacy'
     | '/account/settings'
     | '/account/'
@@ -157,10 +176,11 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/welcome'
     | '/rehearse'
-    | '/schools'
     | '/stuck'
     | '/work'
+    | '/schools/$schoolSlug'
     | '/'
+    | '/schools'
     | '/account/privacy'
     | '/account/settings'
     | '/account'
@@ -170,12 +190,14 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/reset-password'
+    | '/schools'
     | '/welcome'
     | '/_authenticated/rehearse'
-    | '/_authenticated/schools'
     | '/_authenticated/stuck'
     | '/_authenticated/work'
+    | '/schools/$schoolSlug'
     | '/_authenticated/'
+    | '/schools/'
     | '/_authenticated/account/privacy'
     | '/_authenticated/account/settings'
     | '/_authenticated/account/'
@@ -186,6 +208,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  SchoolsRoute: typeof SchoolsRouteWithChildren
   WelcomeRoute: typeof WelcomeRoute
 }
 
@@ -219,6 +242,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/schools': {
+      id: '/schools'
+      path: '/schools'
+      fullPath: '/schools'
+      preLoaderRoute: typeof SchoolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/welcome': {
       id: '/welcome'
       path: '/welcome'
@@ -240,13 +270,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRehearseRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/schools': {
-      id: '/_authenticated/schools'
-      path: '/schools'
-      fullPath: '/schools'
-      preLoaderRoute: typeof AuthenticatedSchoolsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/stuck': {
       id: '/_authenticated/stuck'
       path: '/stuck'
@@ -260,6 +283,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/work'
       preLoaderRoute: typeof AuthenticatedWorkRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/schools/': {
+      id: '/schools/'
+      path: '/'
+      fullPath: '/schools/'
+      preLoaderRoute: typeof SchoolsIndexRouteImport
+      parentRoute: typeof SchoolsRoute
+    }
+    '/schools/$schoolSlug': {
+      id: '/schools/$schoolSlug'
+      path: '/$schoolSlug'
+      fullPath: '/schools/$schoolSlug'
+      preLoaderRoute: typeof SchoolsSchoolSlugRouteImport
+      parentRoute: typeof SchoolsRoute
     }
     '/_authenticated/account/': {
       id: '/_authenticated/account/'
@@ -287,7 +324,6 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedRehearseRoute: typeof AuthenticatedRehearseRoute
-  AuthenticatedSchoolsRoute: typeof AuthenticatedSchoolsRoute
   AuthenticatedStuckRoute: typeof AuthenticatedStuckRoute
   AuthenticatedWorkRoute: typeof AuthenticatedWorkRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
@@ -298,7 +334,6 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedRehearseRoute: AuthenticatedRehearseRoute,
-  AuthenticatedSchoolsRoute: AuthenticatedSchoolsRoute,
   AuthenticatedStuckRoute: AuthenticatedStuckRoute,
   AuthenticatedWorkRoute: AuthenticatedWorkRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
@@ -310,11 +345,25 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
+interface SchoolsRouteChildren {
+  SchoolsSchoolSlugRoute: typeof SchoolsSchoolSlugRoute
+  SchoolsIndexRoute: typeof SchoolsIndexRoute
+}
+
+const SchoolsRouteChildren: SchoolsRouteChildren = {
+  SchoolsSchoolSlugRoute: SchoolsSchoolSlugRoute,
+  SchoolsIndexRoute: SchoolsIndexRoute,
+}
+
+const SchoolsRouteWithChildren =
+  SchoolsRoute._addFileChildren(SchoolsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  SchoolsRoute: SchoolsRouteWithChildren,
   WelcomeRoute: WelcomeRoute,
 }
 export const routeTree = rootRouteImport

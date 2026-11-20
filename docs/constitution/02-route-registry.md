@@ -23,8 +23,8 @@ Development and Account pages are reached from the Office (systems row, Passport
 | 1 | The Office | `/` | Home | OFFICE | Member | 1 | Beta |
 | 2 | Welcome | `/welcome` | Home | OFFICE | Public | 1 | Beta |
 | 3 | Notifications | `/notifications` | Home | OFFICE | Member | 8 | Planned |
-| 4 | The Conservatory | `/schools` | Training | SCHOOLS | Public | 2 | Planned |
-| 5 | School Detail | `/schools/$schoolSlug` | Training | SCHOOLS | Public | 2 | Planned |
+| 4 | The Conservatory | `/schools` | Training | SCHOOLS | Public | 2 | In development |
+| 5 | School Detail | `/schools/$schoolSlug` | Training | SCHOOLS | Public | 2 | In development |
 | 6 | Year & Term | `/schools/$schoolSlug/terms/$termId` | Training | SCHOOLS | Member | 2 | Planned |
 | 7 | Course | `/schools/$schoolSlug/courses/$courseId` | Training | SCHOOLS | Member | 2 | Planned |
 | 8 | Workshop | `/schools/$schoolSlug/workshops/$workshopId` | Training | SCHOOLS | Member | 2 | Planned |

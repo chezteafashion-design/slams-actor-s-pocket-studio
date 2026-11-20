@@ -23,9 +23,9 @@ describe("Office desk", () => {
 
   it("never reports an unbuilt destination as open", () => {
     const train = availabilityOf(DESK_DESTINATIONS.train);
-    expect(train.status).toBe("planned");
+    expect(train.status).toBe("in-development");
     expect(train.phase).toBe(2);
-    expect(train.label).toBe("Not open yet · Phase 2: Conservatory vertical slice");
+    expect(train.label).toBe("Being built · Phase 2: Conservatory vertical slice");
   });
 
   it("sends each of the four principal actions to its own tab", () => {

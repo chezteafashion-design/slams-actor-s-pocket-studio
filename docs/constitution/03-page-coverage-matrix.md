@@ -47,7 +47,7 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 
 ### 4. The Conservatory (mockup 04)
 
-- **Path:** `/schools` · **Tab:** SCHOOLS · **Access:** public · **Phase:** 2 · **Status:** Planned
+- **Path:** `/schools` · **Tab:** SCHOOLS · **Access:** public · **Phase:** 2 · **Status:** In development
 - **Purpose:** The eight schools with honest enrollment state and entry to each.
 - **Actions:** Open school; Compare in Technique Matrix; View my enrollments
 - **Data:** `content:schools`, `enrollments`
@@ -56,7 +56,7 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 
 ### 5. School Detail (mockup 05)
 
-- **Path:** `/schools/$schoolSlug` · **Tab:** SCHOOLS · **Access:** public · **Phase:** 2 · **Status:** Planned
+- **Path:** `/schools/$schoolSlug` · **Tab:** SCHOOLS · **Access:** public · **Phase:** 2 · **Status:** In development
 - **Purpose:** School overview, curriculum (years and terms), practice library and assessments.
 - **Actions:** Enroll; Set as primary or support school; Open term; Open exercise
 - **Data:** `content:schools`, `content:years`, `content:terms`, `enrollments`
