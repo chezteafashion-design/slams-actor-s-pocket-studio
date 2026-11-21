@@ -10,7 +10,7 @@ import { PRODUCT } from "@/domain/constitution";
 import { profileQuery, settingsQuery } from "@/features/account/queries";
 import { DestinationSheet } from "./DestinationSheet";
 import { StudioStatusSheet } from "./StudioStatusSheet";
-import { DESK_DESTINATIONS, DESK_HOTSPOTS, PRINCIPAL_DESTINATIONS, nextCoachLine, tabPath, type DeskDestinationId } from "./desk";
+import { DESK_DESTINATIONS, DESK_HOTSPOTS, deskTarget, nextCoachLine, type DeskDestinationId } from "./desk";
 
 export function OfficeDesk({ userId }: { userId: string }) {
   const { data: profile } = useSuspenseQuery(profileQuery(userId));
@@ -27,8 +27,8 @@ export function OfficeDesk({ userId }: { userId: string }) {
   }, [coach]);
 
   const openDesk = (id: DeskDestinationId) => {
-    const tab = PRINCIPAL_DESTINATIONS[id];
-    if (tab) navigate({ to: tabPath(tab) });
+    const target = deskTarget(id);
+    if (target) navigate({ to: target });
     else setOpenId(id);
   };
   const firstName = profile.display_name.split(/\s+/)[0] ?? "";

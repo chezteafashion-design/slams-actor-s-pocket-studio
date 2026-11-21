@@ -101,10 +101,12 @@ export interface Availability {
 export function availabilityOf(dest: DeskDestination): Availability {
   const pages = dest.pageIds.map(getPage).filter((p): p is PageContract => Boolean(p));
   const live = pages.filter((p) => p.status === "live");
+  const open = pages.filter((p) => p.status === "live" || p.status === "beta");
   const phase = Math.min(...pages.map((p) => p.phase));
   const phaseName = getPhase(phase)?.name ?? "";
   if (live.length === pages.length) return { status: "live", phase, phaseName, label: "Open" };
-  if (live.length > 0) return { status: "beta", phase, phaseName, label: `Partly open · ${live.length} of ${pages.length} pages` };
+  if (open.length === pages.length) return { status: "beta", phase, phaseName, label: "Open · Beta" };
+  if (open.length > 0) return { status: "beta", phase, phaseName, label: `Partly open · ${open.length} of ${pages.length} pages` };
   const building = pages.some((p) => p.status === "in-development");
   return {
     status: building ? "in-development" : "planned",
@@ -131,6 +133,21 @@ export const PRINCIPAL_DESTINATIONS: Partial<Record<DeskDestinationId, NavDestin
   work: "work",
   stuck: "stuck",
 };
+
+/** Desk objects that open straight onto their own page once that page works. */
+export const DESK_PAGE_PATHS: Partial<Record<DeskDestinationId, "/directors-chair">> = {
+  "directors-chair": "/directors-chair",
+};
+
+/** Where tapping a desk object goes: a tab, a working page, or (null) the status sheet. */
+export function deskTarget(id: DeskDestinationId): string | null {
+  const tab = PRINCIPAL_DESTINATIONS[id];
+  if (tab) return tabPath(tab);
+  const path = DESK_PAGE_PATHS[id];
+  const status = availabilityOf(DESK_DESTINATIONS[id]).status;
+  if (path && (status === "beta" || status === "live")) return path;
+  return null;
+}
 
 export function tabPath(tab: NavDestinationId) {
   const d = NAV_DESTINATIONS.find((n) => n.id === tab);

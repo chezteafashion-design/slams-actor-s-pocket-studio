@@ -445,9 +445,10 @@ const pages: PageInput[] = [
     purpose: "Headshots, selected scenes and resume; shareable only when the actor chooses.",
     actions: ["Upload headshot", "Add scene", "Edit resume", "Share link"], data: ["portfolio_items", "takes"], systems: ["passport"], access: "member", phase: 7 },
   { id: "directors-chair", name: "The Director's Chair", family: "development", path: "/directors-chair", tab: "office",
-    purpose: "Notes received, feedback requests and Master's Chair sessions with coaches or labelled AI.",
-    actions: ["Open note", "Request feedback", "Mark note applied"], data: ["director_notes", "review_requests"],
-    systems: ["directors-chair"], access: "member", phase: 8 },
+    purpose: "Review your training record and goals and ask for a clearly labelled AI practice plan; coach notes and feedback requests follow.",
+    actions: ["Review training history", "Review goals", "Ask for a practice plan", "Open note", "Request feedback", "Mark note applied"],
+    data: ["profiles", "enrollments", "lesson_progress", "exercise_attempts", "practice_evidence", "assessment_reviews", "advancements", "director_notes", "review_requests"],
+    systems: ["directors-chair"], engines: ["actor-development"], access: "member", phase: 8, status: "beta" },
 
   // ---------------- ACCOUNT
   { id: "auth", name: "Sign In / Create Account", family: "account", path: "/auth", tab: "office",
@@ -502,7 +503,7 @@ export const ROADMAP_PHASES: ReadonlyArray<{ phase: number; name: string; status
   { phase: 5, name: "Living Scene Engine", status: "planned", goal: "Scene model, Live Session, Unpredictable Director, Unpredictable Partner, Listening Trap, Rehearsal Lounge." },
   { phase: 6, name: "Stuck Desk", status: "planned", goal: "Problem library, diagnosis rules, interventions, 60-Second Rescue, No Tears Required, retake results." },
   { phase: 7, name: "Actor at Work", status: "planned", goal: "Auditions, character lab, breakdowns, scripts, self-tape with Set From Hell, projects, journals, portfolio." },
-  { phase: 8, name: "Director's Chair & notifications", status: "planned", goal: "Coach and labelled-AI feedback, review requests, notifications." },
+  { phase: 8, name: "Director's Chair & notifications", status: "in-progress", goal: "Coach and labelled-AI feedback, review requests, notifications." },
   { phase: 9, name: "Curriculum completion", status: "planned", goal: "Full authored content for all eight schools, reviewed by a qualified practitioner." },
   { phase: 10, name: "Release hardening", status: "planned", goal: "Accessibility audit, performance, offline tolerance, PWA, native packaging readiness." },
 ];

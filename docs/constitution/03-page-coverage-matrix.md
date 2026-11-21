@@ -388,11 +388,11 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 
 ### 41. The Director's Chair
 
-- **Path:** `/directors-chair` · **Tab:** OFFICE · **Access:** member · **Phase:** 8 · **Status:** Planned
-- **Purpose:** Notes received, feedback requests and Master's Chair sessions with coaches or labelled AI.
-- **Actions:** Open note; Request feedback; Mark note applied
-- **Data:** `director_notes`, `review_requests`
-- **Systems / engines:** The Director / Master's Chair
+- **Path:** `/directors-chair` · **Tab:** OFFICE · **Access:** member · **Phase:** 8 · **Status:** Beta
+- **Purpose:** Review your training record and goals and ask for a clearly labelled AI practice plan; coach notes and feedback requests follow.
+- **Actions:** Review training history; Review goals; Ask for a practice plan; Open note; Request feedback; Mark note applied
+- **Data:** `profiles`, `enrollments`, `lesson_progress`, `exercise_attempts`, `practice_evidence`, `assessment_reviews`, `advancements`, `director_notes`, `review_requests`
+- **Systems / engines:** The Director / Master's Chair, Actor Development Engine
 - **Signature experiences:** Unpredictable Director, Do the Damn Note
 
 ## Account
@@ -477,4 +477,4 @@ Total pages: **47** across **7** families. Pages marked with a mockup number com
 | Actor's Passport / My Actor's Journey | 1. The Office, 12. Advancement & Graduation, 37. My Actor's Journey, 38. Evidence Locker, 39. Milestones, 40. Portfolio |
 | The Director / Master's Chair | 1. The Office, 11. Assessment, 16. Live Scene Session, 18. Take Review, 41. The Director's Chair |
 | Living Scene Engine | 10. Exercise Session, 14. Living Scene, 15. Scene Setup, 16. Live Scene Session, 19. Rehearsal Lounge, 22. Audition Prep, 24. Scene Breakdown, 25. Self-Tape Studio, 27. Script Workspace |
-| Actor Development Engine | 1. The Office, 6. Year & Term, 10. Exercise Session, 12. Advancement & Graduation, 33. Retake Result, 36. Baseline Results, 37. My Actor's Journey, 39. Milestones |
+| Actor Development Engine | 1. The Office, 6. Year & Term, 10. Exercise Session, 12. Advancement & Graduation, 33. Retake Result, 36. Baseline Results, 37. My Actor's Journey, 39. Milestones, 41. The Director's Chair |

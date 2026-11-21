@@ -1,5 +1,5 @@
 import { OFFICE_ACTIONS, getPage } from "@/domain/constitution";
-import { COACH_LINES, DESK_DESTINATIONS, DESK_HOTSPOTS, PRINCIPAL_DESTINATIONS, availabilityOf, nextCoachLine, tabPath } from "./desk";
+import { COACH_LINES, DESK_DESTINATIONS, DESK_HOTSPOTS, PRINCIPAL_DESTINATIONS, availabilityOf, deskTarget, nextCoachLine, tabPath } from "./desk";
 
 describe("Office desk", () => {
   it("has a desk object for each of the four principal actions, opening the matching destination", () => {
@@ -26,6 +26,12 @@ describe("Office desk", () => {
     expect(train.status).toBe("in-development");
     expect(train.phase).toBe(2);
     expect(train.label).toBe("Being built · Phase 2: Conservatory vertical slice");
+  });
+
+  it("opens the Director's Notes pad onto the Director's Chair now it is in beta", () => {
+    expect(availabilityOf(DESK_DESTINATIONS["directors-chair"])).toMatchObject({ status: "beta", label: "Open · Beta" });
+    expect(deskTarget("directors-chair")).toBe("/directors-chair");
+    expect(deskTarget("passport")).toBeNull();
   });
 
   it("sends each of the four principal actions to its own tab", () => {

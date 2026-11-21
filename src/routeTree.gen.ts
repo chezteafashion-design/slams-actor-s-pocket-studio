@@ -16,6 +16,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SchoolsRouteImport } from './routes/schools'
 import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedDirectorsChairRouteImport } from './routes/_authenticated/directors-chair'
 import { Route as AuthenticatedRehearseRouteImport } from './routes/_authenticated/rehearse'
 import { Route as AuthenticatedStuckRouteImport } from './routes/_authenticated/stuck'
 import { Route as AuthenticatedWorkRouteImport } from './routes/_authenticated/work'
@@ -59,6 +60,12 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedDirectorsChairRoute =
+  AuthenticatedDirectorsChairRouteImport.update({
+    id: '/directors-chair',
+    path: '/directors-chair',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedRehearseRoute = AuthenticatedRehearseRouteImport.update({
   id: '/rehearse',
   path: '/rehearse',
@@ -110,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/schools': typeof SchoolsRouteWithChildren
   '/welcome': typeof WelcomeRoute
+  '/directors-chair': typeof AuthenticatedDirectorsChairRoute
   '/rehearse': typeof AuthenticatedRehearseRoute
   '/stuck': typeof AuthenticatedStuckRoute
   '/work': typeof AuthenticatedWorkRoute
@@ -124,6 +132,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/welcome': typeof WelcomeRoute
+  '/directors-chair': typeof AuthenticatedDirectorsChairRoute
   '/rehearse': typeof AuthenticatedRehearseRoute
   '/stuck': typeof AuthenticatedStuckRoute
   '/work': typeof AuthenticatedWorkRoute
@@ -142,6 +151,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/schools': typeof SchoolsRouteWithChildren
   '/welcome': typeof WelcomeRoute
+  '/_authenticated/directors-chair': typeof AuthenticatedDirectorsChairRoute
   '/_authenticated/rehearse': typeof AuthenticatedRehearseRoute
   '/_authenticated/stuck': typeof AuthenticatedStuckRoute
   '/_authenticated/work': typeof AuthenticatedWorkRoute
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/schools'
     | '/welcome'
+    | '/directors-chair'
     | '/rehearse'
     | '/stuck'
     | '/work'
@@ -175,6 +186,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/welcome'
+    | '/directors-chair'
     | '/rehearse'
     | '/stuck'
     | '/work'
@@ -192,6 +204,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/schools'
     | '/welcome'
+    | '/_authenticated/directors-chair'
     | '/_authenticated/rehearse'
     | '/_authenticated/stuck'
     | '/_authenticated/work'
@@ -263,6 +276,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/directors-chair': {
+      id: '/_authenticated/directors-chair'
+      path: '/directors-chair'
+      fullPath: '/directors-chair'
+      preLoaderRoute: typeof AuthenticatedDirectorsChairRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/rehearse': {
       id: '/_authenticated/rehearse'
       path: '/rehearse'
@@ -323,6 +343,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDirectorsChairRoute: typeof AuthenticatedDirectorsChairRoute
   AuthenticatedRehearseRoute: typeof AuthenticatedRehearseRoute
   AuthenticatedStuckRoute: typeof AuthenticatedStuckRoute
   AuthenticatedWorkRoute: typeof AuthenticatedWorkRoute
@@ -333,6 +354,7 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDirectorsChairRoute: AuthenticatedDirectorsChairRoute,
   AuthenticatedRehearseRoute: AuthenticatedRehearseRoute,
   AuthenticatedStuckRoute: AuthenticatedStuckRoute,
   AuthenticatedWorkRoute: AuthenticatedWorkRoute,

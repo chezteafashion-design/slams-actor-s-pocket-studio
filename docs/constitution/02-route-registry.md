@@ -60,7 +60,7 @@ Development and Account pages are reached from the Office (systems row, Passport
 | 38 | Evidence Locker | `/journey/evidence` | Development | OFFICE | Member | 3 | Planned |
 | 39 | Milestones | `/journey/milestones` | Development | OFFICE | Member | 3 | Planned |
 | 40 | Portfolio | `/journey/portfolio` | Development | OFFICE | Member | 7 | Planned |
-| 41 | The Director's Chair | `/directors-chair` | Development | OFFICE | Member | 8 | Planned |
+| 41 | The Director's Chair | `/directors-chair` | Development | OFFICE | Member | 8 | Beta |
 | 42 | Sign In / Create Account | `/auth` | Account | OFFICE | Public | 1 | Beta |
 | 43 | Reset Password | `/reset-password` | Account | OFFICE | Public | 1 | Beta |
 | 44 | Profile | `/account` | Account | OFFICE | Member | 1 | Beta |
